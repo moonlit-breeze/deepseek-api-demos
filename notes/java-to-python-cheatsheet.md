@@ -1,3 +1,6 @@
+---
+---
+
 # Java 转 Python 核心差异速查表
 
 > 面向有 Java/PHP 经验的开发者，只讲差异，不讲废话。
@@ -441,4 +444,52 @@ print(result)
 
 ---
 
-> 参考答案见仓库 `solutions/` 目录。
+## 参考答案
+
+### 练习 1：列表推导式
+
+```python
+nums = [3, 7, 9, 12, 15, 18, 21]
+result = sorted([n * 2 for n in nums if n % 3 == 0], reverse=True)
+# [42, 36, 30, 24, 18, 6]
+```
+
+> 解析：列表推导式 `[n * 2 for n in nums if n % 3 == 0]` 一步完成筛选+映射，外层 `sorted(..., reverse=True)` 降序排列。
+
+### 练习 2：函数参数
+
+```python
+def describe_person(name, *hobbies, **details):
+    result = {"name": name, "hobbies": list(hobbies)}
+    result.update(details)
+    return result
+
+# 测试
+result = describe_person("Alice", "coding", "reading", age=30, city="Beijing")
+print(result)
+# {'name': 'Alice', 'hobbies': ['coding', 'reading'], 'age': 30, 'city': 'Beijing'}
+```
+
+> 解析：`*hobbies` 收集为元组，用 `list()` 转列表；`**details` 收集为字典，用 `update()` 合并。
+
+### 练习 3：异常处理
+
+```python
+def safe_read_file(filepath, default=""):
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+    except FileNotFoundError:
+        return default
+    else:
+        print(f"读取成功: {filepath}")
+        return content
+    # 其他异常（PermissionError 等）不做处理，自动向上抛出
+
+# 测试
+print(safe_read_file("不存在.txt", "默认内容"))
+# 输出 "默认内容"（文件不存在，返回 default）
+
+# 创建测试文件后：
+# 输出 "读取成功: test.txt" 和文件内容
+```
