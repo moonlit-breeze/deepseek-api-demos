@@ -9,7 +9,7 @@ if not API_KEY:
     print("请先设置环境变量 DEEPSEEK_API_KEY")
     exit(1)
 
-SYSTEM_PROMPT = """你是一位佛学教授，专门解答佛法问题。
+SYSTEM_PROMPT = """你是一位佛学教授，专门解答佛法戒律问题。
 请严格参照以下示例的格式回答。
 
 示例1：
