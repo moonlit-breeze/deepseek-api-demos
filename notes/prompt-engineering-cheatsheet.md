@@ -1,6 +1,3 @@
----
----
-
 # Prompt 工程速查笔记（直接上手版）
 
 > 面向 Python 初学者，不写废话。配合 DeepSeek API 使用。
